@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class Player : Character
 {
-    public string charName;
+    [SerializeField] private string charName;
 
+    public string CharName
+    {
+        get { return charName; }
+    }
+
+    public void Start()
+    {
+        if(charName == "sbkidi" || charName == "Skibidi"){
+            charName = "YOU CAN'T DO THAT!";
+        }
+    }
 }
