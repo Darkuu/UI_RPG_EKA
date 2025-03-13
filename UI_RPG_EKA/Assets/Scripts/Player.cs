@@ -10,11 +10,4 @@ public class Player : Character
     {
         get { return charName; }
     }
-
-    public void Start()
-    {
-        if(charName == "sbkidi" || charName == "Skibidi"){
-            charName = "YOU CAN'T DO THAT!";
-        }
-    }
 }
