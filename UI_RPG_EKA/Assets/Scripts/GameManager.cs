@@ -25,13 +25,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text shieldStatusText;
 
     [Header("Game Over UI")]
-    [SerializeField] GameObject gameOverUI;  // The Game Over UI panel
+    [SerializeField] GameObject gameOverUI;  
 
     private int Defendvalue = 2;
-
-    // Turn counter to track turns since last spell cast
-    private int turnsSinceHealOrBuff = 0;
-    private int turnsBeforeCanUseAgain = 2;  // Time before buttons can be used again after a spell is cast
 
     void Start()
     {
@@ -51,7 +47,7 @@ public class GameManager : MonoBehaviour
 
         UpdateHealth();
         UpdateShieldStatus();
-        gameOverUI.SetActive(false);  // Hide Game Over UI at the start
+        gameOverUI.SetActive(false);  
     }
 
     private void UpdateHealth()
@@ -104,6 +100,20 @@ public class GameManager : MonoBehaviour
         healButton.GetComponent<Image>().color = Color.white; 
         damageBuffButton.GetComponent<Image>().color = Color.white;  
     }
+    private void CheckGameStatus()
+    {
+        if (enemy.health <= 0)
+        {
+            EnableButtons();
+            SpawnNewEnemy();
+        }
+
+        if (player.health <= 0)
+        {
+            GameOver();
+        }
+    }
+
 
     private void DoAttack()
     {
@@ -117,18 +127,7 @@ public class GameManager : MonoBehaviour
 
         UpdateHealth();
 
-        // Check if enemy is dead and spawn a new one & reset spells
-        if (enemy.health <= 0)
-        {
-            EnableButtons();
-            SpawnNewEnemy();
-        }
-
-        // Check if player is dead
-        if (player.health <= 0)
-        {
-            GameOver();
-        }
+        CheckGameStatus();
     }
 
     private void DoDefend()
@@ -146,18 +145,7 @@ public class GameManager : MonoBehaviour
 
         UpdateHealth();
         UpdateShieldStatus();
-
-        // Check if enemy is dead and spawn a new one
-        if (enemy.health <= 0)
-        {
-            SpawnNewEnemy();
-        }
-
-        // Check if player is dead
-        if (player.health <= 0)
-        {
-            GameOver();
-        }
+        CheckGameStatus();
     }
 
     private void DisableDefendButton()
@@ -198,4 +186,5 @@ public class GameManager : MonoBehaviour
         gameOverUI.SetActive(true);
         Time.timeScale = 0f;
     }
+
 }

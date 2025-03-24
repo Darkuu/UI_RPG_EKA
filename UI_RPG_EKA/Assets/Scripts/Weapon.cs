@@ -7,7 +7,6 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] private int minDamage;
     [SerializeField] private int maxDamage;
 
-    // Getter methods
     public int GetMinDamage() => minDamage;
     public int GetMaxDamage() => maxDamage;
 

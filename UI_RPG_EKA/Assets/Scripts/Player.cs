@@ -5,7 +5,6 @@ public class Player : Character
     [SerializeField] private string charName;
     private bool isShieldBroken = false;
 
-    // Reference to the spell objects
     [SerializeField] private HealSpell healSpell;
     [SerializeField] private DamageBuffSpell damageBuffSpell;
 
