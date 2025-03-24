@@ -19,7 +19,7 @@ Private fields such as minDamage, maxDamage, and isShieldBroken are used in clas
 Abstraction is applied in the Spell class, where the ApplyEffect method is abstract. (duh)
 This means each spell (HealSpell or DamageBuffSpell) defines its own implementation of how the effect is applied, while the base Spell class provides a common interface for all spells in case i add more spells before submitting.
 
-##Enemy Types
+## Enemy Types
    - Basic Enemy: A simple enemy armed with a stick, offering a standard challenge.
    - Berserker: This enemy grows more dangerous over time, increasing its damage with each passing turn as it becomes more enraged.
    - Horde Rats: These Rats become stronger as their health increases. The more health they have, the more damage they deal. Additionally, they regenerate health each turn, making them a persistent threat.
