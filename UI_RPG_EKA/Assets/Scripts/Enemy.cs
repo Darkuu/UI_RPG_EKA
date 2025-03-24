@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    [SerializeField] public int agression;
+    [Header("Beserker Agression")]
+    [SerializeField] public int agression;  
+
+    [Header("Horde Enemy Agression")]
+    [SerializeField] public int hordeAmount;  
+
 }

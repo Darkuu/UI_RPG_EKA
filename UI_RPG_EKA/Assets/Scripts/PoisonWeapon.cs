@@ -1,18 +1,27 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PoisonWeapon : Weapon
 {
     [SerializeField] private int duration;
-    //This is not good, replace it with min and max damage
-    [SerializeField] private int damage;
+
     public override void ApplyEffect(Character target)
     {
-        for (int i = 0; i < duration; i++)
+        target.StartCoroutine(ApplyPoisonOverTime(target));
+    }
+
+    private IEnumerator ApplyPoisonOverTime(Character target)
+    {
+        int turnsLeft = duration;
+        while (turnsLeft > 0)
         {
-            Debug.Log(target.name + " got hit by posion for " + damage );
+            int damage = Random.Range(GetMinDamage(), GetMaxDamage() + 1);
+            Debug.Log(target.name + " got poisoned for " + damage + " damage.");
             target.GetHit(damage);
+            yield return new WaitForSeconds(10f);
+            turnsLeft--;
         }
+
+        Debug.Log(target.name + "'s poison has worn off.");
     }
 }
