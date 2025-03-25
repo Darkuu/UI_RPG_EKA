@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -186,5 +187,8 @@ public class GameManager : MonoBehaviour
         gameOverUI.SetActive(true);
         Time.timeScale = 0f;
     }
-
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
